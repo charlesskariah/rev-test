@@ -10,6 +10,7 @@
       <th>Gender</th>
       <th>Marital status</th>
       <th>Interest</th>
+      <th>Rule Category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
         <td><%= preference.gender %></td>
         <td><%= preference.marital_status %></td>
         <td><%= preference.interest %></td>
+        <td><%= preference.rule_category %></td>
         <td><%= link_to 'Show', preference %></td>
         <td><%= link_to 'Edit', edit_preference_path(preference) %></td>
         <td><%= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' } %></td>

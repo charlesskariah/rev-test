@@ -4,10 +4,10 @@ module PreferencesHelper
   end
 
   def marital_status
-    ["single", "married", "divorced"]
+    ["single", "married"]
   end
 
   def interests
-    ["active", "social", "enthusiastic", "short-tempered"]
+    ["active", "short-tempered", "relaxed", "quiet"]
   end
 end
