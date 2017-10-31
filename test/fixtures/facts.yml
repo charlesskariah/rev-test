@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  matcher: MyString
+  subject: MyString
+  predicate: MyString
+  object: MyString
+  rule_id: 1
+
+two:
+  matcher: MyString
+  subject: MyString
+  predicate: MyString
+  object: MyString
+  rule_id: 1
