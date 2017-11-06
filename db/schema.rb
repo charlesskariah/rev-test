@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030091319) do
+ActiveRecord::Schema.define(version: 20171103053458) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -26,12 +26,60 @@ ActiveRecord::Schema.define(version: 20171030091319) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "rule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "facts", force: :cascade do |t|
     t.string "matcher"
     t.string "subject"
     t.string "predicate"
     t.string "object"
     t.integer "rule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.text "content"
+    t.string "content_type"
+    t.boolean "is_user"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nudges", force: :cascade do |t|
+    t.string "name"
+    t.integer "category_id"
+    t.string "nudge_type"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.integer "question_id"
+    t.integer "next_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pattern_questions", force: :cascade do |t|
+    t.integer "pattern_id"
+    t.integer "question_id"
+    t.integer "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "patterns", force: :cascade do |t|
+    t.string "name"
+    t.integer "max_priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,9 +95,46 @@ ActiveRecord::Schema.define(version: 20171030091319) do
     t.string "rule_category"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.text "content"
+    t.boolean "branching"
+    t.boolean "parent"
+    t.string "question_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rules", force: :cascade do |t|
     t.string "name"
     t.string "rule_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.integer "pattern_id"
+    t.integer "current_parent_id"
+    t.integer "current_question_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_answers", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "user_id"
+    t.text "answer"
+    t.string "question_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "user_name"
+    t.integer "category_id"
+    t.boolean "active"
+    t.boolean "guest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
